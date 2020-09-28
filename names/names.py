@@ -1,4 +1,5 @@
-import time
+import time 
+from bst import BSTNode
 
 start_time = time.time()
 
@@ -10,13 +11,18 @@ f = open('names_2.txt', 'r')
 names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
+
+#a Will be using BST instead
+bst = BSTNode("Lotus")
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
 for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+    bst.insert(name_1)
+for name_2 in names_2:
+    if name_2 not in duplicates:
+        if bst.contains(name_2):
+            duplicates.append(name_2)
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
